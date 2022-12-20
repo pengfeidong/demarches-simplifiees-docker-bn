@@ -49,7 +49,7 @@ if [ -z ${GITLAB_TRIGGER_TOKEN} ] || [ -z ${CONSUMER_KEY} ] || [ -z ${CONSUMER_S
 fi
 
 #URL="https://ingate.foo-test.org/gitlab/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
-URL=https://gitlab-op.apps.ocp4-8.infocepo.com/api/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
+URL="https://gitlab-op.apps.ocp4-8.infocepo.com/api/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
 
 printf "$\n${red}${i}.${no_color} Retrieve DSO api access token.\n\n"
 i=$(($i + 1))

@@ -50,15 +50,16 @@ fi
 
 #URL="https://ingate.foo-test.org/gitlab/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
 URL="https://gitlab-op.apps.ocp4-8.infocepo.com/api/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
+curl -X POST -H "accept: application/json" "$URL"
 
-printf "$\n${red}${i}.${no_color} Retrieve DSO api access token.\n\n"
-i=$(($i + 1))
-CONSUMER_CREDENTIALS=$(echo "${CONSUMER_KEY}:${CONSUMER_SECRET}" | tr -d '\n' | base64)
+#printf "$\n${red}${i}.${no_color} Retrieve DSO api access token.\n\n"
+#i=$(($i + 1))
+#CONSUMER_CREDENTIALS=$(echo "${CONSUMER_KEY}:${CONSUMER_SECRET}" | tr -d '\n' | base64)
 
-TOKEN=$(curl -k -X POST https://ingate.foo-test.org/oauth2/token \
-  -d "grant_type=client_credentials" \
-  -H "Authorization: Basic ${CONSUMER_CREDENTIALS}" \
-  | sed -e 's,{"access_token":"\([^"]*\)".*,\1,')
+#TOKEN=$(curl -k -X POST https://ingate.foo-test.org/oauth2/token \
+#  -d "grant_type=client_credentials" \
+#  -H "Authorization: Basic ${CONSUMER_CREDENTIALS}" \
+#  | sed -e 's,{"access_token":"\([^"]*\)".*,\1,')
 
-printf "\n${red}${i}.${no_color} Send request to DSO api.\n\n"
-curl -X POST -H "Authorization: Bearer ${TOKEN}" -H "accept: application/json" "$URL" | jq '.'
+#printf "\n${red}${i}.${no_color} Send request to DSO api.\n\n"
+#curl -X POST -H "Authorization: Bearer ${TOKEN}" -H "accept: application/json" "$URL" | jq '.'

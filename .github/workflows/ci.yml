@@ -12,7 +12,6 @@ jobs:
       - name: Send a sync request to DSO api
         run: |
           sh script-mirror.sh \
-            -a ${{ secrets.API_DOMAIN }} \
             -g ${{ secrets.GITLAB_TRIGGER_TOKEN }} \
             -k ${{ secrets.CONSUMER_KEY }} \
             -s ${{ secrets.CONSUMER_SECRET }}

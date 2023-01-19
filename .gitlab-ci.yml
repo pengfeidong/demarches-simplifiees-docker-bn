@@ -1,7 +1,7 @@
-include:
-  - local: "/includes/docker.yml"
-  - local: "/includes/vault.yml"
-  - local: "/includes/rules.yml"
+#include:
+#  - local: "/includes/docker.yml"
+#  - local: "/includes/vault.yml"
+#  - local: "/includes/rules.yml"
 
 default:
   image: alpine:latest

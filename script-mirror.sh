@@ -50,6 +50,7 @@ fi
 
 #URL="https://ingate.foo-test.org/gitlab/v4/projects/92/trigger/pipeline?ref=main&token=${GITLAB_TRIGGER_TOKEN}"
 URL="https://gitlab-op.apps.ocp4-8.infocepo.com/api/v4/projects/186/trigger/pipeline?ref=master&token=glptt-56f775933d3d25cf514fbef197d63451e3d16bc2"
+echo $URL
 curl -X POST "$URL"
 
 #curl -X POST --fail -F token=${GITLAB_TRIGGER_TOKEN} -F ref=master https://gitlab-op.apps.ocp4-8.infocepo.com/api/v4/projects/186/trigger/pipeline

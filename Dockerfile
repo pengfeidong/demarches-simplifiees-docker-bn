@@ -1,4 +1,4 @@
-FROM ruby:3.1.3
+FROM docker.io/ruby:3.1.3
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get clean
 RUN apt-get install -y htop curl build-essential sudo git gnupg wget libcurl3-dev libpq-dev zlib1g-dev libicu-dev && apt-get autoremove && apt-get clean

@@ -1,13 +1,7 @@
-FROM docker.io/ruby:3.1.3
+FROM dongpengfei/ruby-node-yarn:3.1.3-16.20.0-1.22.19
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get clean
-RUN apt-get install -y htop curl build-essential sudo git gnupg wget libcurl3-dev libpq-dev zlib1g-dev libicu-dev && apt-get autoremove && apt-get clean
-
-# Yarn
-RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get upgrade -y && apt-get install -y yarn && apt-get autoremove && apt-get clean
+RUN apt-get install -y htop build-essential git gnupg wget libcurl3-dev libpq-dev zlib1g-dev libicu-dev && apt-get autoremove && apt-get clean
 
 # DS
 RUN git clone https://github.com/betagouv/demarches-simplifiees.fr.git ds

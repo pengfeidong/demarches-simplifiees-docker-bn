@@ -8,11 +8,6 @@ default:
 #  tags:
 #    - ADD_CUSTOM_TAG_HERE
 
-cache:
-  paths:
-    - .m2/repository/
-    - node_modules
-
 variables:
   TAG: "${CI_COMMIT_REF_SLUG}"
   DOCKERFILE: Dockerfile

@@ -21,7 +21,7 @@ services:
     build:
       context: .
       args:
-        TAG: 2023-01-31-01
+        DS_VERSION: main
     container_name: ds_app
     ports:
       - "3000:3000"

@@ -4,7 +4,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get clean
 RUN apt-get install -y htop build-essential git gnupg wget libcurl3-dev libpq-dev zlib1g-dev libicu-dev && apt-get autoremove && apt-get clean
 
 # DS
-RUN git clone https://github.com/betagouv/demarches-simplifiees.fr.git ds
+ARG TAG=main
+RUN git clone --branch $TAG --depth 1 https://github.com/demarches-simplifiees/demarches-simplifiees.fr.git ds
 WORKDIR /ds
 
 RUN yarn install --production

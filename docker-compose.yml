@@ -18,7 +18,10 @@ services:
       - ds_network
   
   app:
-    build: .
+    build:
+      context: .
+      args:
+        TAG: 2023-01-31-01
     container_name: ds_app
     ports:
       - "3000:3000"

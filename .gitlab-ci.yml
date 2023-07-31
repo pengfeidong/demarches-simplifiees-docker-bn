@@ -46,4 +46,4 @@ docker-build:
     DOCKERFILE: 'Dockerfile'
   stage: docker-build
   extends:
-    - .buildah:build
+    - .kaniko:build

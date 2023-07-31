@@ -23,10 +23,6 @@ WORKDIR /ds
 COPY --from=builder /ds /ds
 RUN bundle install
 
-# Install foreman for process management
-RUN gem install foreman
-
 EXPOSE 3000
 RUN if [ "$DS_ENTRYPOINT" = "true" ] ; then sh /ds/ds-entry-point.sh ; fi
-CMD ["foreman", "start"]
-
+CMD ["sh", "/ds/ds-start.sh"]

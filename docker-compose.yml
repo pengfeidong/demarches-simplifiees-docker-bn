@@ -13,19 +13,16 @@ services:
     volumes:
       - type: volume
         source: ds-db-volume
-        target: /var/lib/postgresql/data      
+        target: /var/lib/postgresql/data
     networks:
       - ds_network
-  
+
   app:
     build:
       context: .
-      args:
-        DS_VERSION: main
     container_name: ds_app
     ports:
       - "3000:3000"
-      - "443:443"
     depends_on:
       - db
     environment:
@@ -34,16 +31,35 @@ services:
       DB_PASSWORD: ds
       DB_HOST: db
       RAILS_ENV: production
-      RAILS_SERVE_STATIC_FILES: 'true'
-      RAILS_LOG_TO_STDOUT: 'true'
-      DS_ENTRYPOINT: 'true'
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
+      DS_ENTRYPOINT: "true"
+    networks:
+      - ds_network
+
+  job:
+    build:
+      context: .
+    container_name: ds_job
+    depends_on:
+      - db
+    environment:
+      DB_DATABASE: ds
+      DB_USERNAME: ds
+      DB_PASSWORD: ds
+      DB_HOST: db
+      RAILS_ENV: production
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
+      DS_ENTRYPOINT: "true"
+    command: bundle exec rake jobs:work
     networks:
       - ds_network
 
 networks:
   ds_network:
-      name: ds_network
-      driver: bridge
+    name: ds_network
+    driver: bridge
 
 volumes:
   ds-db-volume:

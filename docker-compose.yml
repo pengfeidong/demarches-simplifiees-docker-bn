@@ -56,6 +56,16 @@ services:
     networks:
       - ds_network
 
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - ds_network
+
 networks:
   ds_network:
     name: ds_network

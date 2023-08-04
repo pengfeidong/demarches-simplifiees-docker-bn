@@ -34,6 +34,13 @@ services:
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_LOG_TO_STDOUT: "true"
       DS_ENTRYPOINT: "true"
+      CLASSIC_SMTP_ENABLED: "enabled"
+      SMTP_HOST: "mailhog"
+      SMTP_PORT: "1025"
+      MAIL_FROM: "noreply.ds@interieur.gouv.fr"
+      SMTP_USER: ""
+      SMTP_PASS: ""
+      SMTP_AUTHENTICATION: "plain"
     networks:
       - ds_network
 
@@ -52,6 +59,12 @@ services:
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_LOG_TO_STDOUT: "true"
       DS_ENTRYPOINT: "true"
+      SMTP_HOST: "mailhog"
+      SMTP_PORT: "1025"
+      MAIL_FROM: "noreply.ds@interieur.gouv.fr"
+      SMTP_USER: ""
+      SMTP_PASS: ""
+      SMTP_AUTHENTICATION: "plain"
     command: bundle exec rake jobs:work
     networks:
       - ds_network

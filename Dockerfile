@@ -23,8 +23,6 @@ WORKDIR /ds
 COPY --from=builder /ds /ds
 RUN bundle install
 
-RUN sh ds-update-code.sh
-
 EXPOSE 3000
 RUN if [ "$DS_ENTRYPOINT" = "true" ] ; then sh /ds/ds-entry-point.sh ; fi
 CMD ["rails", "server", "-p", "3000"]

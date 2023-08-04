@@ -70,7 +70,7 @@ services:
       - ds_network
 
   mailhog:
-    container_name: mailhog
+    container_name: ds_mailhog
     image: mailhog/mailhog
     restart: always
     ports:

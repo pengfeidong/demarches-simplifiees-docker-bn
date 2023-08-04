@@ -59,6 +59,7 @@ services:
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_LOG_TO_STDOUT: "true"
       DS_ENTRYPOINT: "true"
+      CLASSIC_SMTP_ENABLED: "enabled"
       SMTP_HOST: "mailhog"
       SMTP_PORT: "1025"
       MAIL_FROM: "noreply.ds@interieur.gouv.fr"

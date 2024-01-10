@@ -13,7 +13,10 @@ default:
 variables:
   TAG: "${CI_COMMIT_REF_SLUG}"
   DOCKERFILE: Dockerfile
-  REGISTRY_URL: "${REGISTRY_HOST}/${PROJECT_PATH}"
+  PROJECT_NAME: demarches-simplifiees
+  PROJECT_ORGANISATION: ministere-interieur
+  PROJECT_PATH: ${PROJECT_ORGANISATION}-${PROJECT_NAME}
+  REGISTRY_URL: "${IMAGE_REPOSITORY}"
 
 stages:
   - read-secret
@@ -26,8 +29,9 @@ read_secret:
 
 docker-build:
   variables:
-    WORKING_DIR: ""
+    WORKING_DIR: "."
     IMAGE_NAME: demarches-simplifiees
+    DOCKERFILE: 'Dockerfile'
   stage: docker-build
   extends:
     - .kaniko:build-push

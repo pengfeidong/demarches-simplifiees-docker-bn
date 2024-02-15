@@ -1,4 +1,4 @@
-FROM dongpengfei/ruby-node-yarn:3.1.3-16.20.0-1.22.19 as builder
+FROM dongpengfei/ruby-node-yarn:3.3.0-20.11.0-4.1.0 as builder
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get clean && apt-get install -y htop curl build-essential sudo git gnupg wget libcurl3-dev libpq-dev zlib1g-dev libicu-dev s3fs && apt-get autoremove && apt-get clean
 

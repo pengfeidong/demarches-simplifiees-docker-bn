@@ -17,7 +17,7 @@ RUN mv config/initializers/flipper.rb.backup config/initializers/flipper.rb
 
 RUN rm -rf node_modules
 
-FROM ruby:3.1.3 as runner
+FROM ruby:3.3.0 as runner
 
 WORKDIR /ds
 COPY --from=builder /ds /ds

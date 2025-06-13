@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   db:
-    image: postgres:15.1
+    image: postgis/postgis:15-3.4
     restart: always
     container_name: ds_db
     environment:
@@ -40,6 +40,8 @@ services:
       SMTP_USER: ""
       SMTP_PASS: ""
       SMTP_AUTHENTICATION: "plain"
+      REDIS_URL: "redis://redis:6379/0"
+      RAILS_QUEUE_ADAPTER: "inline"
     networks:
       - ds_network
 
@@ -64,7 +66,44 @@ services:
       SMTP_USER: ""
       SMTP_PASS: ""
       SMTP_AUTHENTICATION: "plain"
+      RAILS_QUEUE_ADAPTER: "inline"
     command: bundle exec rake jobs:work
+    networks:
+      - ds_network
+
+  sidekiq:
+    build:
+      context: .
+    container_name: ds_sidekiq
+    depends_on:
+      - db
+    environment:
+      DB_DATABASE: ds
+      DB_USERNAME: ds
+      DB_PASSWORD: ds
+      DB_HOST: db
+      RAILS_ENV: production
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
+      DS_ENTRYPOINT: "true"
+      CLASSIC_SMTP_ENABLED: "enabled"
+      SMTP_HOST: "mailhog"
+      SMTP_PORT: "1025"
+      SMTP_USER: ""
+      SMTP_PASS: ""
+      SMTP_AUTHENTICATION: "plain"
+      SKYLIGHT_ENABLED: false
+      REDIS_URL: "redis://redis:6379/0"
+    command: bundle exec sidekiq
+    networks:
+      - ds_network
+
+  redis:
+    image: redis:7
+    container_name: ds_redis
+    restart: always
+    ports:
+      - "6379:6379"
     networks:
       - ds_network
 
